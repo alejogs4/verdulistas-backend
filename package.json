@@ -1,0 +1,16 @@
+{
+  "name": "verdulistas-backend",
+  "version": "1.0.0",
+  "main": "package.json",
+  "repository": "https://github.com/alejogs4/verdulistas-backend.git",
+  "author": "alejogs4 <alejogs4@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^2.8.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "graphql": "^14.4.2",
+    "jwt": "^0.2.0",
+    "pg": "^7.12.1"
+  }
+}
