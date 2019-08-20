@@ -1,10 +1,13 @@
 /**
  * Main application setup
  */
-const express = require('express')
-const app = express()
+require('dotenv').config({ path: './process.env' });
+const express = require('express');
+
+const app = express();
 // Graphql setup
 const setupGraphql = require('./graphql')
-setupGraphql(app)
 
-module.exports = app
+setupGraphql(app);
+
+module.exports = app;

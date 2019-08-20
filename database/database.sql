@@ -1,125 +1,98 @@
-DROP DATABASE IF EXISTS verdulistas;
 
-CREATE DATABASE verdulistas
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    CONNECTION LIMIT = -1;
-
--- ----------------------------------
-
-CREATE TABLE public.usuarios
+CREATE TABLE roles
 (
-    nombre "char" NOT NULL,
-    id serial NOT NULL,
-    direccion "char",
-    correo "char" NOT NULL,
-    "contraseña" "char" NOT NULL,
-    apellidos "char" NOT NULL,
-    telefono "char",
-    PRIMARY KEY (id)
-)
-WITH (
-    OIDS = FALSE
+  id serial,
+  name varchar(100) NOT NULL,
+  CONSTRAINT role_pk PRIMARY KEY(id),
+  CONSTRAINT name_role_unique UNIQUE(name)
 );
 
-ALTER TABLE public.usuarios
-    OWNER to postgres;
-
-
-
-CREATE TABLE public.productos
+CREATE TABLE permissions
 (
-    nombre "char" NOT NULL,
-    id "char" NOT NULL,
-    descripcion "char" NOT NULL,
-    precio real NOT NULL,
-    "urlImagen" "char",
-    inventario integer,
-    PRIMARY KEY (id)
-)
-WITH (
-    OIDS = FALSE
+  id serial,
+  name varchar(100) NOT NULL,
+  CONSTRAINT permission_pk PRIMARY KEY(id),
+  CONSTRAINT name_permission_unique UNIQUE(name)
 );
 
-ALTER TABLE public.productos
-    OWNER to postgres;
-
-
-
-CREATE TABLE public.carritos
+CREATE TABLE users
 (
-    id serial NOT NULL,
-    "idUsuario" integer NOT NULL,
-    nombre "char",
-    guardado boolean,
-    PRIMARY KEY (id),
-    CONSTRAINT "idFromUsuarios" FOREIGN KEY ("idUsuario")
-        REFERENCES public.usuarios (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-WITH (
-    OIDS = FALSE
+  id serial NOT NULL,
+  name varchar(100) NOT NULL,
+  email varchar(150) NOT NULL,
+  password varchar(150) NOT NULL,
+  lastname varchar(150) NOT NULL,
+  role_id INTEGER,
+  CONSTRAINT pk_users PRIMARY KEY (id),
+  CONSTRAINT unique_key_users_email UNIQUE(email),
+  CONSTRAINT fk_users_roles FOREIGN KEY(role_id) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-ALTER TABLE public.carritos
-    OWNER to postgres;
-
-
-
-
-CREATE TABLE public.compras
+CREATE TABLE phones
 (
-    id serial NOT NULL,
-    "idCarrito" integer NOT NULL,
-    "idProducto" "char" NOT NULL,
-    cantidad integer NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT "idFromCarritos" FOREIGN KEY ("idCarrito")
-        REFERENCES public.carritos (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT "idFromProductos" FOREIGN KEY ("idProducto")
-        REFERENCES public.productos (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-WITH (
-    OIDS = FALSE
+  id serial,
+  user_id INTEGER,
+  phone VARCHAR(40) NOT NULL,
+  CONSTRAINT pk_phones PRIMARY KEY(id),
+  CONSTRAINT fk_phones_users FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-ALTER TABLE public.compras
-    OWNER to postgres;
-
-
-
-CREATE TABLE public.pedidos
+CREATE TABLE addresses
 (
-    id serial NOT NULL,
-    "idCarrito" integer NOT NULL,
-    "idUsuario" integer NOT NULL,
-    direccion "char",
-    telefono "char",
-    fecha timestamp with time zone,
-    PRIMARY KEY (id),
-    CONSTRAINT "idFromCarrito" FOREIGN KEY ("idCarrito")
-        REFERENCES public.carritos (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT "idFromUsuario" FOREIGN KEY ("idUsuario")
-        REFERENCES public.usuarios (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-WITH (
-    OIDS = FALSE
+  id serial,
+  user_id INTEGER,
+  addres VARCHAR(150) NOT NULL,
+  CONSTRAINT pk_addresses PRIMARY KEY(id),
+  CONSTRAINT fk_phones_addresses FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-ALTER TABLE public.pedidos
-    OWNER to postgres;
+CREATE TABLE products
+(
+  id serial NOT NULL,
+  code char(6) NOT NULL,
+  name varchar(200) NOT NULL,
+  description text NOT NULL,
+  price real NOT NULL,
+  image varchar(350),
+  quantity integer,
+  CONSTRAINT pk_products PRIMARY KEY (id),
+  CONSTRAINT unique_key__code_products UNIQUE(code)
+);
 
--- --------------------------
 
+CREATE TABLE carts
+(
+  id serial,
+  user_id INTEGER NOT NULL,
+  CONSTRAINT pk_carts PRIMARY KEY (id),
+  CONSTRAINT fk_carts_users FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
+CREATE TABLE purchases
+(
+  id serial,
+  cart_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  quantity INTEGER NOT NULL,
+  CONSTRAINT pk_purchases PRIMARY KEY (id),
+  CONSTRAINT fk_purchases_carts FOREIGN KEY (cart_id) REFERENCES carts(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_purchases_products FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
+CREATE TABLE orders
+(
+  id serial,
+  cart_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
+  address varchar(150) NOT NULL,
+  phone varchar(40) NOT NULL,
+  order_date TIMESTAMP NOT NULL DEFAULT now(),
+  CONSTRAINT pk_orders PRIMARY KEY (id),
+  CONSTRAINT fk_orders_carts FOREIGN KEY(cart_id) REFERENCES carts(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_orders_users FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO roles(name) VALUES('ADMIN');
+INSERT INTO roles(name) VALUES('USER');
+
+ALTER TABLE users ALTER COLUMN role_id SET DEFAULT 2;

@@ -6,7 +6,8 @@
   "author": "alejogs4 <alejogs4@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "test": "jest --watch"
   },
   "dependencies": {
     "apollo-server-express": "^2.8.1",

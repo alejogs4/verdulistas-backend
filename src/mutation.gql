@@ -2,8 +2,7 @@ input UserInput {
   name: String!
   lastname: String!
   email: String!
-  address: String
-  phone: String
+  password: String!
 }
 
 type Mutation {
