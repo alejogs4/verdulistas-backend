@@ -1,0 +1,11 @@
+input UserInput {
+  name: String!
+  lastname: String!
+  email: String!
+  address: String
+  phone: String
+}
+
+type Mutation {
+  signUp(user: UserInput!): User!
+}
