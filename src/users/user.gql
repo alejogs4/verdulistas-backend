@@ -5,3 +5,8 @@ type User {
   email: String!
   role_id: Int!
 }
+
+type LoginPayload {
+  user: User!
+  token: String!
+}

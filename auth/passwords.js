@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 /**
  * Encrypt user password with an user as parameter
- * @param {User} user 
+ * @param {User} user
  */
 function encryptPassword(user) {
   const newUserWithEncryptedPassword = { ...user };

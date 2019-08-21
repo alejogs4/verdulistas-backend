@@ -6,5 +6,6 @@ module.exports = {
   },
   Mutation: {
     signUp: users.signUp,
+    signIn: users.signIn,
   },
 };

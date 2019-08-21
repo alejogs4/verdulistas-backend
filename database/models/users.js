@@ -17,5 +17,16 @@ module.exports = function getUserModel({ database }) {
 
       return user.rows[0];
     },
+    async signIn(email, password) {
+      const userInformation = [
+        email,
+        password,
+      ];
+
+      const user = await database.query(`
+        SELECT id, name, lastname, email, role_id FROM users WHERE email=$1 AND password=$2`, userInformation);
+
+      return user.rows[0]
+    },
   };
 };
