@@ -19,5 +19,5 @@ module.exports = {
   },
   CartItem: {
     product: cart.getCartItemProduct,
-  }
+  },
 };

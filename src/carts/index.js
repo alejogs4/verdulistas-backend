@@ -20,6 +20,7 @@ module.exports = {
     const currentCart = userCart || cart;
     // Verify if product already is in the current cart and update quantity
     const possibleCartItem = await ctx.cartModel.getProductFromCart({ productId, cartId: currentCart.id });
+    ctx.loaders.getCartItems.clear(currentCart.id);
 
     if (possibleCartItem) {
       const cartItem = await ctx.cartModel.updateCartQuantity({
