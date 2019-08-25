@@ -2,5 +2,5 @@ type Query {
   users: [User]!
   products: [Product]!
   product(id: Int!): Product!
-  userCart: Cart!
+  userCart: Cart
 }
