@@ -35,7 +35,7 @@ CREATE TABLE addresses
 CREATE TABLE products
 (
   id serial NOT NULL,
-  code char(6) NOT NULL,
+  code varchar(30) NOT NULL,
   name varchar(200) NOT NULL,
   description text NOT NULL,
   price real NOT NULL,
