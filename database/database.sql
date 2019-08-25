@@ -1,3 +1,4 @@
+-- DDL ------------------------------------
 
 CREATE TABLE users
 (
@@ -76,6 +77,34 @@ CREATE TABLE orders
   CONSTRAINT fk_orders_users FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
-INSERT INTO products(code, name, description, price, image, quantity) values('GTR345', 'Zanahoria', 'La mejor Zanahoria', 3500, 'https://comefruta.es/wp-content/uploads/zanahorias.jpg', 26);
 ALTER TABLE cart_items ADD CONSTRAINT cart_product_uk UNIQUE(cart_id, product_id);
+
+-- DML ------------------------------------
+INSERT INTO products(code, name, description, price, image, quantity) 
+VALUES('CBLL_PIC_0001', 
+       'Cebolla picada', 
+       'Cebolla picada y empacada al vacío en presentación de 200g sin conservantes', 
+       1500, 
+       'https://2.bp.blogspot.com/-jELCCM-ypEM/Ws6aWTqKS-I/AAAAAAAAASc/Qr5gOY33xxAoWgjnXFnlLzvt21uR0LeawCLcBGAs/s1600/0f62bba76fadab14a6d8e922f6767a5e-0.jpg', 
+       26);
+       
+INSERT INTO products(code, name, description, price, image, quantity) 
+VALUES('HOG_0101', 
+       'Hogao', 
+       'Hogao preparado y cocinado, empacado en presentación de frasco de vidrio de 250g sin conservantes', 
+       3500, 
+       'https://4.bp.blogspot.com/-A9aUYJ1T9Qs/Ws6aSUPsKKI/AAAAAAAAASU/6Zw9HDdNrz8XP9eDUkrmuAT7nNeeH49DwCLcBGAs/s1600/0f62bba76fadab14a6d8e922f6767a5e-1.jpg', 
+       15);
+       
+INSERT INTO products(code, name, description, price, image, quantity) 
+VALUES('VERD_SOPA_0201', 
+       'Verduras para sopa y ensalada', 
+       'Verduras para sopa y ensalada, preparadas y listas empacadas al vacío en presentación de 150g sin conservantes; trae habichuelas, zanahoria y arveja desgranada', 
+       1500, 
+       'https://4.bp.blogspot.com/-A9aUYJ1T9Qs/Ws6aSUPsKKI/AAAAAAAAASU/6Zw9HDdNrz8XP9eDUkrmuAT7nNeeH49DwCLcBGAs/s1600/0f62bba76fadab14a6d8e922f6767a5e-1.jpg', 
+       20);
+       
+-- -------------------------------------
+
+
+
