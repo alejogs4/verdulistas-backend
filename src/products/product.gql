@@ -1,5 +1,5 @@
 type Product {
-  id: Int!
+  id: Int
   code: String!
   name: String!
   description: String!

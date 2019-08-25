@@ -1,0 +1,14 @@
+type CartItem {
+  id: Int!
+  cart_id: Int!
+  product_id: Int!
+  quantity: Int!
+  product: Product!
+}
+
+type Cart {
+  id: Int!
+  user_id: Int!
+  user: User!
+  cartItems: [CartItem]!
+}

@@ -8,4 +8,5 @@ input UserInput {
 type Mutation {
   signUp(user: UserInput!): User!
   signIn(email: String!, password: String!): LoginPayload!
+  addProductToCart(productId: Int!): CartItem!
 }

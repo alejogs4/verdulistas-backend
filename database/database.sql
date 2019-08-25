@@ -1,20 +1,4 @@
 
-CREATE TABLE roles
-(
-  id serial,
-  name varchar(100) NOT NULL,
-  CONSTRAINT role_pk PRIMARY KEY(id),
-  CONSTRAINT name_role_unique UNIQUE(name)
-);
-
-CREATE TABLE permissions
-(
-  id serial,
-  name varchar(100) NOT NULL,
-  CONSTRAINT permission_pk PRIMARY KEY(id),
-  CONSTRAINT name_permission_unique UNIQUE(name)
-);
-
 CREATE TABLE users
 (
   id serial NOT NULL,
@@ -22,10 +6,9 @@ CREATE TABLE users
   email varchar(150) NOT NULL,
   password varchar(150) NOT NULL,
   lastname varchar(150) NOT NULL,
-  role_id INTEGER,
+  admin BOOLEAN DEFAULT '0',
   CONSTRAINT pk_users PRIMARY KEY (id),
   CONSTRAINT unique_key_users_email UNIQUE(email),
-  CONSTRAINT fk_users_roles FOREIGN KEY(role_id) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE phones
@@ -68,15 +51,16 @@ CREATE TABLE carts
   CONSTRAINT fk_carts_users FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE purchases
+CREATE TABLE cart_items
 (
   id serial,
   cart_id INTEGER NOT NULL,
   product_id INTEGER NOT NULL,
   quantity INTEGER NOT NULL,
-  CONSTRAINT pk_purchases PRIMARY KEY (id),
-  CONSTRAINT fk_purchases_carts FOREIGN KEY (cart_id) REFERENCES carts(id) ON UPDATE CASCADE ON DELETE CASCADE,
-  CONSTRAINT fk_purchases_products FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE
+  CONSTRAINT pk_cart_items PRIMARY KEY (id),
+  CONSTRAINT fk_car_items_carts FOREIGN KEY (cart_id) REFERENCES carts(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_cart_items_products FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT cart_product_uk UNIQUE(cart_id, product_id)
 );
 
 CREATE TABLE orders
@@ -92,7 +76,6 @@ CREATE TABLE orders
   CONSTRAINT fk_orders_users FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO roles(name) VALUES('ADMIN');
-INSERT INTO roles(name) VALUES('USER');
 
-ALTER TABLE users ALTER COLUMN role_id SET DEFAULT 2;
+INSERT INTO products(code, name, description, price, image, quantity) values('GTR345', 'Zanahoria', 'La mejor Zanahoria', 3500, 'https://comefruta.es/wp-content/uploads/zanahorias.jpg', 26);
+ALTER TABLE cart_items ADD CONSTRAINT cart_product_uk UNIQUE(cart_id, product_id);

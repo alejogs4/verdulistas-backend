@@ -4,16 +4,24 @@ const { resolvers, typeDefs } = require('./src');
 const models = require('./database');
 // Auth service
 const auth = require('./auth');
+// Application data loaders
+const loaders = require('./loaders');
 
 module.exports = function setupApolloServer(app) {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
     playground: true,
-    context: () => ({
-      ...models,
-      auth,
-    }),
+    context: ({ req }) => {
+      const user = auth.getUserByToken(req.headers.token);
+
+      return {
+        ...models,
+        auth,
+        user,
+        loaders,
+      };
+    },
   });
 
   server.applyMiddleware({ app, path: '/graphql' });

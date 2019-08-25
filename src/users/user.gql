@@ -3,7 +3,7 @@ type User {
   name: String!
   lastname: String!
   email: String!
-  role_id: Int!
+  admin: Boolean!
 }
 
 type LoginPayload {

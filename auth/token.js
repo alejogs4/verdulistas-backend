@@ -11,6 +11,12 @@ function generateToken(payload) {
   });
 }
 
+function getUserByToken(token) {
+  const payload = jwt.decode(token)
+  return payload;
+}
+
 module.exports = {
   generateToken,
+  getUserByToken,
 };

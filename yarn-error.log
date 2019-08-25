@@ -2,7 +2,7 @@ Arguments:
   C:\Program Files\nodejs\node.exe C:\Users\alejo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js test
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\alejo\bin;C:\Python27;C:\Python27\Scripts;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft VS Code\bin;C:\ProgramData\chocolatey\bin;C:\Users\alejo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Go\bin;C:\Users\alejo\.cargo\bin;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;%DASHLANE_DLL_DIR%;C:\Users\alejo\AppData\Roaming\npm;%NVM_HOME%;%NVM_SYMLINK%;%GOPATH%\bin;%PyCharm Community Edition%;C:\Users\alejo\AppData\Local\hyper\app-3.0.0\resources\bin
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\alejo\bin;C:\Python27;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft VS Code\bin;C:\ProgramData\chocolatey\bin;C:\Users\alejo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Go\bin;C:\Users\alejo\.cargo\bin;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32;C:\Users\alejo\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\ucrt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Qt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\ucrt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Ssl;C:\Users\alejo\AppData\Roaming\npm;C:\Users\alejo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\alejo\go\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2019.1.1\bin;C:\Users\alejo\AppData\Local\hyper\app-3.0.0\resources\bin;C:\Python27
 
 Yarn version: 
   1.5.1
@@ -31,6 +31,7 @@ npm manifest:
       "dotenv": "^8.1.0",
       "express": "^4.17.1",
       "graphql": "^14.4.2",
+      "jsonwebtoken": "^8.5.1",
       "pg": "^7.12.1"
     },
     "devDependencies": {
@@ -993,6 +994,10 @@ Lockfile:
     dependencies:
       node-int64 "^0.4.0"
   
+  buffer-equal-constant-time@1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
+  
   buffer-from@^1.0.0:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
@@ -1348,6 +1353,12 @@ Lockfile:
     dependencies:
       jsbn "~0.1.0"
       safer-buffer "^2.1.0"
+  
+  ecdsa-sig-formatter@1.0.11:
+    version "1.0.11"
+    resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
+    dependencies:
+      safe-buffer "^5.0.1"
   
   ee-first@1.1.1:
     version "1.1.1"
@@ -2724,6 +2735,21 @@ Lockfile:
     dependencies:
       minimist "^1.2.0"
   
+  jsonwebtoken@^8.5.1:
+    version "8.5.1"
+    resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
+    dependencies:
+      jws "^3.2.2"
+      lodash.includes "^4.3.0"
+      lodash.isboolean "^3.0.3"
+      lodash.isinteger "^4.0.4"
+      lodash.isnumber "^3.0.3"
+      lodash.isplainobject "^4.0.6"
+      lodash.isstring "^4.0.1"
+      lodash.once "^4.0.0"
+      ms "^2.1.1"
+      semver "^5.6.0"
+  
   jsprim@^1.2.2:
     version "1.4.1"
     resolved "https://registry.yarnpkg.com/jsprim/-/jsprim-1.4.1.tgz#313e66bc1e5cc06e438bc1b7499c2e5c56acb6a2"
@@ -2733,11 +2759,20 @@ Lockfile:
       json-schema "0.2.3"
       verror "1.10.0"
   
-  jwt@^0.2.0:
-    version "0.2.0"
-    resolved "https://registry.yarnpkg.com/jwt/-/jwt-0.2.0.tgz#4c9ad46bc84bfeaf91556ecce7c57aa578cbc8b8"
+  jwa@^1.4.1:
+    version "1.4.1"
+    resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
     dependencies:
-      node-base64 "0.0.1"
+      buffer-equal-constant-time "1.0.1"
+      ecdsa-sig-formatter "1.0.11"
+      safe-buffer "^5.0.1"
+  
+  jws@^3.2.2:
+    version "3.2.2"
+    resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
+    dependencies:
+      jwa "^1.4.1"
+      safe-buffer "^5.0.1"
   
   kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
     version "3.2.2"
@@ -2809,6 +2844,34 @@ Lockfile:
     dependencies:
       p-locate "^3.0.0"
       path-exists "^3.0.0"
+  
+  lodash.includes@^4.3.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
+  
+  lodash.isboolean@^3.0.3:
+    version "3.0.3"
+    resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
+  
+  lodash.isinteger@^4.0.4:
+    version "4.0.4"
+    resolved "https://registry.yarnpkg.com/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz#619c0af3d03f8b04c31f5882840b77b11cd68343"
+  
+  lodash.isnumber@^3.0.3:
+    version "3.0.3"
+    resolved "https://registry.yarnpkg.com/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz#3ce76810c5928d03352301ac287317f11c0b1ffc"
+  
+  lodash.isplainobject@^4.0.6:
+    version "4.0.6"
+    resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  
+  lodash.isstring@^4.0.1:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
+  
+  lodash.once@^4.0.0:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   
   lodash.sortby@^4.7.0:
     version "4.7.0"
@@ -3012,10 +3075,6 @@ Lockfile:
   nice-try@^1.0.4:
     version "1.0.5"
     resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
-  
-  node-base64@0.0.1:
-    version "0.0.1"
-    resolved "https://registry.yarnpkg.com/node-base64/-/node-base64-0.0.1.tgz#ee3e095f97e9f4d72fb3dea98bcb2d25c8716b03"
   
   node-fetch@^2.1.2, node-fetch@^2.2.0:
     version "2.6.0"
