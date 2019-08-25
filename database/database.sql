@@ -1,5 +1,7 @@
 -- DDL ------------------------------------
 
+CREATE DATABASE verdulistas;
+
 CREATE TABLE users
 (
   id serial NOT NULL,
