@@ -11,7 +11,7 @@ CREATE TABLE users
   lastname varchar(150) NOT NULL,
   admin BOOLEAN DEFAULT '0',
   CONSTRAINT pk_users PRIMARY KEY (id),
-  CONSTRAINT unique_key_users_email UNIQUE(email),
+  CONSTRAINT unique_key_users_email UNIQUE(email)
 );
 
 CREATE TABLE phones
@@ -106,6 +106,8 @@ VALUES('VERD_SOPA_0201',
        'https://4.bp.blogspot.com/-A9aUYJ1T9Qs/Ws6aSUPsKKI/AAAAAAAAASU/6Zw9HDdNrz8XP9eDUkrmuAT7nNeeH49DwCLcBGAs/s1600/0f62bba76fadab14a6d8e922f6767a5e-1.jpg', 
        20);
        
+ALTER TABLE cart_items ADD CONSTRAINT non_negative_quantities CHECK(quantity > 0);
+ALTER TABLE orders ADD COLUMN order_total FLOAT NOT NULL;
 -- -------------------------------------
 
 

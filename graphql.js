@@ -4,6 +4,8 @@ const { resolvers, typeDefs } = require('./src');
 const models = require('./database');
 // Auth service
 const auth = require('./auth');
+// Email service
+const sendMailForCreatedOrder = require('./helpers/email');
 // Application data loaders
 const loaders = require('./loaders');
 
@@ -20,6 +22,7 @@ module.exports = function setupApolloServer(app) {
         auth,
         user,
         loaders,
+        sendMailForCreatedOrder,
       };
     },
   });

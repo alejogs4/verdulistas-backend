@@ -5,8 +5,21 @@ input UserInput {
   password: String!
 }
 
+input OrderInput {
+  address: String!
+  phone: String!
+}
+
+type GeneratedOrder {
+  message: String
+}
+
 type Mutation {
   signUp(user: UserInput!): User!
   signIn(email: String!, password: String!): LoginPayload!
   addProductToCart(productId: Int!): CartItem!
+  deleteOneProductFromCart(cartItemId: Int!, productId: Int!): CartItem!
+  deleteProductFromCart(cartItemId: Int!, productId: Int!): CartItem!
+  deleteCart(cartId: Int!): Cart!
+  createOrder(order: OrderInput): GeneratedOrder!
 }

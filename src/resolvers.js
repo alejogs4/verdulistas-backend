@@ -13,6 +13,10 @@ module.exports = {
     signUp: users.signUp,
     signIn: users.signIn,
     addProductToCart: cart.addProductToCart,
+    deleteOneProductFromCart: cart.deleteSingleProductFromCart,
+    deleteProductFromCart: cart.deleteProductFromCart,
+    deleteCart: cart.deleteCart,
+    createOrder: cart.generateOrder,
   },
   Cart: {
     cartItems: cart.getCartItems,
