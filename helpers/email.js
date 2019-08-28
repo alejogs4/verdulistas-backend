@@ -21,7 +21,7 @@ function sendMailForCreatedOrder({ user, cartItems, orderTotal, finalOrder, admi
     subject: `Order de compra creada para ${user.name} ${user.lastname}`,
     html: `
     <div style="background: #FAFDFF; text-align: center;">
-      <img src="https://github.com/alejogs4/Verdulistas/blob/master/static/resources/images/logo_verdu_1.png?raw=true" style="width: 300px; height: auto;" />
+      <img src="https://github.com/alejogs4/Verdulistas/blob/master/assets/img/logo_1.png?raw=true" style="width: 300px; height: auto;" />
       <div>
         <h2>${admin ? `<h2>El usuario ${user.name} ${user.lastname} ha realizado una nueva compra</h2>` : 'Has creado una nueva compra'}</h2>
         <p><strong>Valor:</strong> ${orderTotal}</p>

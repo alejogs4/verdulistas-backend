@@ -1,7 +1,7 @@
 module.exports = function getUserModel({ database }) {
   return {
     async getAll() {
-      const users = await database.query('SELECT id, name, lastname, email, role_id FROM users');
+      const users = await database.query('SELECT id, name, lastname, email, admin FROM users');
       return users.rows;
     },
     async signUp(userInformation) {
