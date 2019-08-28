@@ -1,7 +1,7 @@
 /**
  * Main application setup
  */
-require('dotenv').config({ path: './process.env' });
+//require('dotenv').config({ path: './process.env' });
 const express = require('express');
 
 const app = express();
@@ -19,5 +19,8 @@ const access = (req, res, next) => {
 };
 
 app.use(access);
+
+
+app.get('/sad', (req, res) => res.status(200).send("Bro, I'm feeling so sad today 8/25/2019 :("));
 
 module.exports = app;
