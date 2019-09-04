@@ -20,7 +20,10 @@ describe('Tests for auth password helpers', () => {
       password: '36acf017ea0974457577506ef75268ac93ed6d61864ee994f438b63916ed1736',
     };
 
-    expect(passwords.encryptPassword(user)).toEqual(expectedUser);
+    const userWithPassword = passwords.encryptPassword(user);
+
+    expect(userWithPassword).toEqual(expectedUser);
+    expect(userWithPassword.password.length).toBe(64);
     expect(user).toEqual(userCopied);
   });
 });

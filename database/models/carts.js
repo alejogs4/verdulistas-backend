@@ -5,6 +5,7 @@ module.exports = function getCartModel({ database }) {
         SELECT id, user_id
         FROM carts
         WHERE user_id=$1 AND id NOT IN(SELECT cart_id FROM orders WHERE user_id=$1)`, [userId]);
+
       return userCart.rows[0];
     },
     async createUserCart(userId) {
