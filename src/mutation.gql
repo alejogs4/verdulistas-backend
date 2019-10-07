@@ -10,6 +10,15 @@ input OrderInput {
   phone: String!
 }
 
+input ProductInput {
+  code: String!
+  name: String!
+  description: String!
+  price: Float!
+  image: String
+  quantity: Int
+}
+
 type GeneratedOrder {
   message: String
 }
@@ -22,4 +31,7 @@ type Mutation {
   deleteProductFromCart(cartItemId: Int!, productId: Int!): CartItem!
   deleteCart(cartId: Int!): Cart!
   createOrder(order: OrderInput): GeneratedOrder!
+  createProduct(product: ProductInput!): Product!
+  updateProduct(productId: Int!, product: ProductInput!): Product!
+  deleteProduct(id: Int!): Product!
 }

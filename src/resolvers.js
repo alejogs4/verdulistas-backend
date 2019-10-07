@@ -17,6 +17,9 @@ module.exports = {
     deleteProductFromCart: cart.deleteProductFromCart,
     deleteCart: cart.deleteCart,
     createOrder: cart.generateOrder,
+    createProduct: products.createProduct,
+    updateProduct: products.updateProduct,
+    deleteProduct: products.deleteProduct,
   },
   Cart: {
     cartItems: cart.getCartItems,
