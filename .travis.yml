@@ -6,5 +6,8 @@ cache:
     - "node_modules"
 install:
   - npm install
+env:
+  global:
+  - NODE_ENV=test
 script:
   - npm test
