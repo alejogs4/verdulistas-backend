@@ -14,9 +14,7 @@ module.exports = {
     // Get user by email and password
     const user = await ctx.userModel.signIn(email, encryptedInformation.password);
     // Verify that user exists
-    if (!user) {
-      throw new Error('Either email or password are incorrect');
-    }
+    if (!user) throw new Error('Either email or password are incorrect');
     // Generate user token
     const token = await ctx.auth.generateToken(user);
     return {
