@@ -26,7 +26,11 @@ module.exports = function getUserModel({ database }) {
       const user = await database.query(`
         SELECT id, name, lastname, email, admin FROM users WHERE email=$1 AND password=$2`, userInformation);
 
-      return user.rows[0]
+      return user.rows[0];
+    },
+    async getProfile(id) {
+      const user = await database.query('SELECT id, name, lastname, email, admin FROM users WHERE id=$1', [id]);
+      return user.rows[0];
     },
   };
 };

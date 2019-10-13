@@ -1,6 +1,8 @@
 type Query {
   users: [User]!
+  profile(id: Int!): User!
   products: [Product]!
   product(id: Int!): Product!
-  userCart: Cart
+  userCart: Cart,
+  categories: [Category]!
 }

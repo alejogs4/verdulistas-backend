@@ -6,6 +6,7 @@ const mutation = fs.readFileSync(path.join(__dirname, 'mutation.gql'), { encodin
 const users = fs.readFileSync(path.join(__dirname, 'users', 'user.gql'), { encoding: 'utf8' });
 const products = fs.readFileSync(path.join(__dirname, 'products', 'product.gql'), { encoding: 'utf8' });
 const carts = fs.readFileSync(path.join(__dirname, 'carts', 'cart.gql'), { encoding: 'utf8' });
+const categories = fs.readFileSync(path.join(__dirname, 'categories', 'categories.gql'), { encoding: 'utf8' });
 
 module.exports = `
   ${users}
@@ -13,4 +14,5 @@ module.exports = `
   ${mutation}
   ${products}
   ${carts}
+  ${categories}
 `;

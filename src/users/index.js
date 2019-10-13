@@ -22,4 +22,14 @@ module.exports = {
       token,
     };
   },
+  async getUserProfile(_, { id }, ctx) {
+    // Get user profile
+    const user = await ctx.userModel.getProfile(id);
+    // Verify that user really exists
+    if (!user) {
+      throw new Error(`User with id: ${id} doesn't exists in database`);
+    }
+    // Returns user profile
+    return user;
+  },
 };

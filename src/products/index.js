@@ -30,7 +30,6 @@ module.exports = {
     }
 
     const updatedProduct = await ctx.productModel.updateProduct({ ...product, productId });
-
     return updatedProduct;
   },
   async deleteProduct(_, { id }, ctx) {
@@ -44,5 +43,9 @@ module.exports = {
 
     const deletedProduct = await ctx.productModel.deleteProduct(id);
     return deletedProduct;
+  },
+  async getProductCategory(product, _, ctx) {
+    const productCategory = await ctx.loaders.productCategory.load(product.category_id);
+    return productCategory.rows[0];
   },
 };

@@ -32,6 +32,13 @@ CREATE TABLE addresses
   CONSTRAINT fk_phones_addresses FOREIGN KEY(user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE categories
+(
+  id serial NOT NULL,
+  name varchar(50) NOT null,
+  CONSTRAINT pk_categories PRIMARY KEY(id)
+);
+
 CREATE TABLE products
 (
   id serial NOT NULL,
@@ -44,7 +51,6 @@ CREATE TABLE products
   CONSTRAINT pk_products PRIMARY KEY (id),
   CONSTRAINT unique_key__code_products UNIQUE(code)
 );
-
 
 CREATE TABLE carts
 (
@@ -109,6 +115,8 @@ VALUES('VERD_SOPA_0201',
 ALTER TABLE cart_items ADD CONSTRAINT non_negative_quantities CHECK(quantity > 0);
 ALTER TABLE orders ADD COLUMN order_total FLOAT NOT NULL;
 -- -------------------------------------
-
+INSERT INTO categories(name) values('Producto General');
+ALTER TABLE products ADD COLUMN category_id int NOT NULL DEFAULT 1;
+ALTER TABLE products ADD CONSTRAINT fk_products_categories FOREIGN KEY(category_id) REFERENCES categories(id);
 
 

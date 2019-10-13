@@ -6,4 +6,5 @@ type Product {
   price: Float!
   image: String!
   quantity: Int!
+  category: Category!
 }

@@ -17,6 +17,7 @@ input ProductInput {
   price: Float!
   image: String
   quantity: Int
+  categoryId: Int!
 }
 
 type GeneratedOrder {
@@ -34,4 +35,5 @@ type Mutation {
   createProduct(product: ProductInput!): Product!
   updateProduct(productId: Int!, product: ProductInput!): Product!
   deleteProduct(id: Int!): Product!
+  addCategory(name: String!): Category!
 }
