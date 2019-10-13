@@ -38,10 +38,9 @@ module.exports = function getProductModel({ database }) {
       categoryId,
     }) {
       const product = await database.query(`
-        UPDATE products SET code=$1, name=$2, description=$3, quantity=$4, image=$5, price=$6, category_id=$8 
+        UPDATE products SET code=$1, name=$2, description=$3, quantity=$4, image=$5, price=$6, category_id=$8
         WHERE id=$7 returning *
         `, [code, name, description, quantity, image, price, productId, categoryId]);
-
       return product.rows[0];
     },
     async deleteProduct(id) {

@@ -30,6 +30,11 @@ module.exports = {
     }
 
     const updatedProduct = await ctx.productModel.updateProduct({ ...product, productId });
+
+    if (!updatedProduct) {
+      throw new Error(`Product with id ${productId} doesn't exists`);
+    }
+
     return updatedProduct;
   },
   async deleteProduct(_, { id }, ctx) {
