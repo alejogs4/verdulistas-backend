@@ -8,7 +8,7 @@ describe('Tests for user model', () => {
       lastname: 'Garcia Serna',
       email: 'alejogs4@gmail.com',
       admin: true,
-    }
+    };
 
     const database = {
       query: jest.fn().mockResolvedValue({
@@ -21,6 +21,6 @@ describe('Tests for user model', () => {
 
     expect(user).toEqual(storedUser);
     expect(database.query).toHaveBeenCalledTimes(1);
-    expect(database.query).toHaveBeenCalledWith('SELECT id, name, lastname, email, admin FROM users WHERE id=$1', [1]);
+    expect(database.query).toHaveBeenCalledWith('SELECT id, name, lastname, email, admin, bond FROM users WHERE id=$1', [1]);
   });
 });

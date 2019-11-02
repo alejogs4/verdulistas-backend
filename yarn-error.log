@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\alejo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js test
+  C:\Program Files\nodejs\node.exe C:\Users\alejo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\alejo\bin;C:\Python27;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft VS Code\bin;C:\ProgramData\chocolatey\bin;C:\Users\alejo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Go\bin;C:\Users\alejo\.cargo\bin;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32;C:\Users\alejo\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\ucrt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Qt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\ucrt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Ssl;C:\Users\alejo\AppData\Roaming\npm;C:\Users\alejo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\alejo\go\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2019.1.1\bin;C:\Users\alejo\AppData\Local\hyper\app-3.0.0\resources\bin;C:\Python27
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\alejo\bin;C:\Python27;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft VS Code\bin;C:\ProgramData\chocolatey\bin;C:\Users\alejo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Go\bin;C:\Program Files\MongoDB\Server\3.6\bin;C:\Users\alejo\.cargo\bin;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python37-32;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\alejo\AppData\Local\Programs\Python\Python36-32;C:\Users\alejo\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\ucrt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Qt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\ucrt;C:\Users\alejo\AppData\Roaming\Dashlane\6.0.2.11187\bin\Ssl;C:\Users\alejo\AppData\Roaming\npm;C:\Users\alejo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\alejo\go\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2019.1.1\bin;C:\Users\alejo\AppData\Local\hyper\app-3.0.0\resources\bin;C:\Python27
 
 Yarn version: 
   1.5.1
@@ -28,10 +28,12 @@ npm manifest:
     "dependencies": {
       "apollo-server-express": "^2.8.1",
       "cors": "^2.8.5",
+      "dataloader": "^1.4.0",
       "dotenv": "^8.1.0",
       "express": "^4.17.1",
       "graphql": "^14.4.2",
       "jsonwebtoken": "^8.5.1",
+      "nodemailer": "^6.3.0",
       "pg": "^7.12.1"
     },
     "devDependencies": {
@@ -1226,6 +1228,10 @@ Lockfile:
       abab "^2.0.0"
       whatwg-mimetype "^2.2.0"
       whatwg-url "^7.0.0"
+  
+  dataloader@^1.4.0:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-1.4.0.tgz#bca11d867f5d3f1b9ed9f737bd15970c65dff5c8"
   
   debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
     version "2.6.9"
@@ -3113,6 +3119,10 @@ Lockfile:
       semver "^5.3.0"
       tar "^4"
   
+  nodemailer@^6.3.0:
+    version "6.3.0"
+    resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.3.0.tgz#a89b0c62d3937bdcdeecbf55687bd7911b627e12"
+  
   nopt@^4.0.1:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/nopt/-/nopt-4.0.1.tgz#d0d4685afd5415193c8c7505602d0d17cd64474d"
@@ -4555,9 +4565,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 3221225786
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c jest --watch
+  Arguments: /d /s /c nodemon server.js
   Directory: C:\Users\alejo\OneDrive\Documents\github\alejogs4\verdulistas-backend
   Output:
   

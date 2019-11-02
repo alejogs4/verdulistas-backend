@@ -3,6 +3,7 @@ input UserInput {
   lastname: String!
   email: String!
   password: String!
+  referral_code: String
 }
 
 input OrderInput {

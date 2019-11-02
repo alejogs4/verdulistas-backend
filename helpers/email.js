@@ -10,7 +10,14 @@ const transport = nodemailer.createTransport({
   },
 });
 
-function sendMailForCreatedOrder({ user, cartItems, orderTotal, finalOrder, admin = false }) {
+function sendMailForCreatedOrder({
+  user,
+  cartItems,
+  orderTotal,
+  finalOrder,
+  admin = false,
+  userBond,
+}) {
   const orderItems = cartItems.reduce((a, b) => (
     `${a} <li><strong>Producto: </strong>${b.name} <strong>Precio: </strong>${b.price} <strong>Cantidad: </strong>${b.quantity}</li>`
   ), '');
@@ -25,6 +32,8 @@ function sendMailForCreatedOrder({ user, cartItems, orderTotal, finalOrder, admi
       <div>
         <h2>${admin ? `<h2>El usuario ${user.name} ${user.lastname} ha realizado una nueva compra</h2>` : 'Has creado una nueva compra'}</h2>
         <p><strong>Valor:</strong> ${orderTotal}</p>
+        <p><strong>Descuento:</strong> ${userBond}</p>
+        <p><strong>Precio final:</strong> ${finalOrder.order_total}</p>
         <p><strong>ID de orden:</strong> ${finalOrder.id}</p>
         <p><strong>Direccion de orden:</strong> ${finalOrder.address}</p>
         <h3>Productos</h3>

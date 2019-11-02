@@ -6,6 +6,12 @@ module.exports = {
   async signUp(_, { user }, ctx) {
     const encryptedUser = ctx.auth.encryptPassword(user);
     const savedUser = await ctx.userModel.signUp(encryptedUser);
+    const referrer = await ctx.userModel.getUserByReferralCode(user.referral_code);
+
+    if (referrer) {
+      ctx.userModel.updateUserBond({ points: 50000, userId: referrer.id });
+    }
+
     return savedUser;
   },
   async signIn(_, { email, password }, ctx) {

@@ -19,7 +19,11 @@ module.exports = {
     const cart = !userCart && (await ctx.cartModel.createUserCart(ctx.user.id));
     const currentCart = userCart || cart;
     // Verify if product already is in the current cart and update quantity
-    const possibleCartItem = await ctx.cartModel.getProductFromCart({ productId, cartId: currentCart.id });
+    const possibleCartItem = await ctx.cartModel.getProductFromCart({
+      productId,
+      cartId: currentCart.id,
+    });
+
     ctx.loaders.getCartItems.clear(currentCart.id);
 
     if (possibleCartItem) {
@@ -49,21 +53,36 @@ module.exports = {
       throw new Error('User doesn\'t has a products in his cart');
     }
     // Calculate order total
-    const orderTotal = cartItems.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
+    const orderTotal = cartItems.reduce((total, cartItem) => (
+      total + (cartItem.price * cartItem.quantity)
+    ), 0);
+    // Get user Bond
+    const userBond = (await ctx.userModel.getProfile(ctx.user.id)).bond;
+    const totalWithBond = orderTotal - userBond;
     // Create order
     const finalOrder = await ctx.cartModel.createOrder({
       cartId: userCart.id,
       userId: ctx.user.id,
-      orderTotal,
+      orderTotal: totalWithBond < 0 ? 0 : totalWithBond,
       ...order,
     });
 
+    await ctx.userModel.updateUserBond({
+      userId: ctx.user.id,
+      bond: totalWithBond < 0 ? Math.abs(totalWithBond) : 0,
+    });
+    // Update user bond
+    await ctx.userModel.updateUserBond({
+      userId: ctx.user.id,
+      points: orderTotal,
+    });
     // Send email to user and admin
     setImmediate(ctx.sendMailForCreatedOrder, {
       user: ctx.user,
       cartItems,
       finalOrder,
       orderTotal,
+      userBond,
     });
 
     setImmediate(ctx.sendMailForCreatedOrder, {
@@ -71,6 +90,7 @@ module.exports = {
       cartItems,
       finalOrder,
       orderTotal,
+      userBond,
       admin: true,
     });
 

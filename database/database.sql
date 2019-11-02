@@ -14,6 +14,9 @@ CREATE TABLE users
   CONSTRAINT unique_key_users_email UNIQUE(email)
 );
 
+ALTER TABLE users ADD COLUMN referral_code varchar(100) default '';
+ALTER TABLE users ADD CONSTRAINT uq_users_referral_code UNIQUE(referral_code);
+
 CREATE TABLE phones
 (
   id serial,
@@ -117,7 +120,8 @@ ALTER TABLE orders ADD COLUMN order_total FLOAT NOT NULL;
 -- -------------------------------------
 INSERT INTO categories(name) values('Producto General');
 ALTER TABLE products ADD COLUMN category_id int NOT NULL DEFAULT 1;
-ALTER TABLE products ADD CONSTRAINT fk_products_categories FOREIGN KEY(category_id) REFERENCES categories(id);
+ALTER TABLE products ADD CONSTRAINT fk_products_categories FPOREIGN KEY(category_id) REFERENCES categories(id);
 ALTER TABLE categories ADD CONSTRAINT uq_categories_name UNIQUE(name);
-
-
+------------------------------------------
+ALTER TABLE users ADD COLUMN bond int not null default 0;
+ALTER TABLE users ADD CONSTRAINT non_negative_bonds CHECK(bond > -1);

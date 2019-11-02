@@ -4,6 +4,9 @@ type User {
   lastname: String!
   email: String!
   admin: Boolean!
+  bond: Int!
+  referral_code: String
+
 }
 
 type LoginPayload {
