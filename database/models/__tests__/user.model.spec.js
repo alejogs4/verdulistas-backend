@@ -21,6 +21,6 @@ describe('Tests for user model', () => {
 
     expect(user).toEqual(storedUser);
     expect(database.query).toHaveBeenCalledTimes(1);
-    expect(database.query).toHaveBeenCalledWith('SELECT id, name, lastname, email, admin, bond FROM users WHERE id=$1', [1]);
+    expect(database.query).toHaveBeenCalledWith('SELECT id, name, lastname, email, admin, bond, referral_code FROM users WHERE id=$1', [1]);
   });
 });
