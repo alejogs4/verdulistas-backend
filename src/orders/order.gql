@@ -1,0 +1,10 @@
+type Order {
+  id: Int!
+  cart_id: Int!
+  user_id: Int!
+  address: String!
+  phone: String!
+  order_date: String!
+  user: User!
+  cart: Cart!
+}

@@ -15,4 +15,26 @@ module.exports = {
     const category = await ctx.categoriesModel.createCategory(name);
     return category;
   },
+  async editCategory(_, { name, icon, id }, ctx) {
+    if (!ctx.user) {
+      throw new Error('User must to be loggued to edit a category');
+    }
+
+    if (!ctx.user.admin) {
+      throw new Error('User must to be an admin to edit a category');
+    }
+    const category = await ctx.categoriesModel.editCategory({ name, icon, id });
+    return category;
+  },
+  async deleteCategory(_, { id }, ctx) {
+    if (!ctx.user) {
+      throw new Error('User must to be loggued to delete a category');
+    }
+
+    if (!ctx.user.admin) {
+      throw new Error('User must to be an admin to delete a category');
+    }
+    const category = await ctx.categoriesModel.deleteCategory(id);
+    return category;
+  },
 };

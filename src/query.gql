@@ -5,4 +5,5 @@ type Query {
   product(id: Int!): Product!
   userCart: Cart,
   categories: [Category]!
+  orders: [Order]!
 }

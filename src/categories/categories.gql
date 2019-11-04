@@ -1,4 +1,5 @@
 type Category {
   id: Int!
   name: String!
+  icon: String!
 }

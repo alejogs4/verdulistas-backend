@@ -7,6 +7,7 @@ const users = fs.readFileSync(path.join(__dirname, 'users', 'user.gql'), { encod
 const products = fs.readFileSync(path.join(__dirname, 'products', 'product.gql'), { encoding: 'utf8' });
 const carts = fs.readFileSync(path.join(__dirname, 'carts', 'cart.gql'), { encoding: 'utf8' });
 const categories = fs.readFileSync(path.join(__dirname, 'categories', 'categories.gql'), { encoding: 'utf8' });
+const orders = fs.readFileSync(path.join(__dirname, 'orders', 'order.gql'), { encoding: 'utf8' });
 
 module.exports = `
   ${users}
@@ -15,4 +16,5 @@ module.exports = `
   ${products}
   ${carts}
   ${categories}
+  ${orders}
 `;

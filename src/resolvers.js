@@ -2,6 +2,7 @@ const users = require('./users');
 const products = require('./products');
 const cart = require('./carts');
 const categories = require('./categories');
+const orders = require('./orders');
 
 module.exports = {
   Query: {
@@ -11,6 +12,7 @@ module.exports = {
     userCart: cart.getUserCart,
     profile: users.getUserProfile,
     categories: categories.getAll,
+    orders: orders.getAll,
   },
   Mutation: {
     signUp: users.signUp,
@@ -24,6 +26,8 @@ module.exports = {
     updateProduct: products.updateProduct,
     deleteProduct: products.deleteProduct,
     addCategory: categories.addCategory,
+    editCategory: categories.editCategory,
+    deleteCategory: categories.deleteCategory,
   },
   Cart: {
     cartItems: cart.getCartItems,
@@ -33,5 +37,9 @@ module.exports = {
   },
   Product: {
     category: products.getProductCategory,
+  },
+  Order: {
+    user: orders.getOrderUser,
+    cart: orders.getOrderCart,
   },
 };

@@ -1,5 +1,9 @@
 module.exports = function getCartModel({ database }) {
   return {
+    async getCartById(cartId) {
+      const cart = await database.query('SELECT id, user_id FROM carts WHERE id=$1', [cartId]);
+      return cart.rows[0];
+    },
     async getUserCart(userId) {
       const userCart = await database.query(`
         SELECT id, user_id

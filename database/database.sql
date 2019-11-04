@@ -41,6 +41,7 @@ CREATE TABLE categories
   name varchar(50) NOT null,
   CONSTRAINT pk_categories PRIMARY KEY(id)
 );
+ALTER TABLE categories ADD COLUMN icon varchar(300) NOT NULL DEFAULT '';
 
 CREATE TABLE products
 (
@@ -120,7 +121,7 @@ ALTER TABLE orders ADD COLUMN order_total FLOAT NOT NULL;
 -- -------------------------------------
 INSERT INTO categories(name) values('Producto General');
 ALTER TABLE products ADD COLUMN category_id int NOT NULL DEFAULT 1;
-ALTER TABLE products ADD CONSTRAINT fk_products_categories FOREIGN KEY(category_id) REFERENCES categories(id);
+ALTER TABLE products ADD CONSTRAINT fk_products_categories FOREIGN KEY(category_id) REFERENCES categories(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE categories ADD CONSTRAINT uq_categories_name UNIQUE(name);
 ------------------------------------------
 ALTER TABLE users ADD COLUMN bond int not null default 0;
