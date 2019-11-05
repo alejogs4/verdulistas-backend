@@ -4,8 +4,8 @@ module.exports = function getCategoriesModel({ database }) {
       const categories = await database.query('SELECT id, name, icon FROM categories');
       return categories.rows;
     },
-    async createCategory(name) {
-      const category = await database.query('INSERT INTO categories(name) VALUES($1) returning *', [name]);
+    async createCategory(name, icon) {
+      const category = await database.query('INSERT INTO categories(name, icon) VALUES($1, $2) returning *', [name, icon]);
       return category.rows[0];
     },
     async editCategory({ name, icon, id } = {}) {

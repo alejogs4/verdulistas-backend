@@ -3,7 +3,7 @@ module.exports = {
     const categories = await ctx.categoriesModel.getAll();
     return categories;
   },
-  async addCategory(_, { name }, ctx) {
+  async addCategory(_, { name, icon }, ctx) {
     if (!ctx.user) {
       throw new Error('User must to be loggued to add a new category');
     }
@@ -12,7 +12,7 @@ module.exports = {
       throw new Error('User must to be an admin to add a new category');
     }
 
-    const category = await ctx.categoriesModel.createCategory(name);
+    const category = await ctx.categoriesModel.createCategory(name, icon);
     return category;
   },
   async editCategory(_, { name, icon, id }, ctx) {

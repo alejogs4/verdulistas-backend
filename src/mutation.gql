@@ -36,7 +36,7 @@ type Mutation {
   createProduct(product: ProductInput!): Product!
   updateProduct(productId: Int!, product: ProductInput!): Product!
   deleteProduct(id: Int!): Product!
-  addCategory(name: String!): Category!
+  addCategory(name: String!, icon: String): Category!
   editCategory(id: Int!, name: String!, icon: String): Category!
   deleteCategory(id: Int!): Category!
 }
