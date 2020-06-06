@@ -10,7 +10,7 @@
     "test": "jest --watch"
   },
   "dependencies": {
-    "apollo-server-express": "^2.8.1",
+    "apollo-server-express": "^2.14.2",
     "cors": "^2.8.5",
     "dataloader": "^1.4.0",
     "dotenv": "^8.1.0",
